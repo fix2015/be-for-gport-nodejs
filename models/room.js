@@ -40,7 +40,8 @@ module.exports = function(sequelize, DataTypes) {
                         allowNull: false
                     }
                 }),
-                Room.hasMany(models.Price)
+                Room.hasMany(models.Price),
+                Room.hasMany(models.Image)
             }
         }
     });

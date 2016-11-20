@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var places  = require('./routes/places');
 var rooms  = require('./routes/rooms');
+var models  = require('./models');
 
 var app = express();
 
@@ -26,6 +27,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/places', places);
 app.use('/rooms', rooms);
+
+/*
+models.Place.findAll({
+  include: [
+    {model: models.Room, include: [
+      {model: models.Price}, {model: models.Image}
+    ]}]
+}).spread(function(item, created) {
+  console.log(item.get({
+    plain: true,
+    raw: true
+  }).Rooms[1])
+})
+*/
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
